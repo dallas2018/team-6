@@ -37,7 +37,7 @@ mysql.init_app(app)
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    return render_template('SERJobsHome.html')
 
 class ReusableForm(Form):
     name = TextAreaField('Name:', validators=[validators.data_required()])
