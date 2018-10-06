@@ -1,0 +1,22 @@
+{% extends 'Modal1.html' %}
+
+{% block body %}
+
+<form method="POST" action="">
+
+    <h1>Select Application</h1>
+    {% for f in form %}
+    <div class="form-group">
+        {{ f.label }}<br> {{ f }}
+    </div>
+    {% endfor %}
+</form>
+If you would like to start a new application, click new.<br>
+<center>
+
+    <a href="/page1" class="Resume Application">Resume&raquo</a>
+    <a href="/page1" class="Paper Application">Paper&raquo</a>
+    <a href="/page1" class="New Application">New&raquo</a>
+</center>
+
+{% endblock %}
