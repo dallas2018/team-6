@@ -6,6 +6,8 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 
 from flask import Flask, render_template, flash, request
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
+import smtplib
+from twilio.rest import Client
 
 from Demographic_Information import Demographic_Information
 from Contact_Information import Contact_Information
@@ -75,8 +77,8 @@ def page3():
         gender                  = form.gender.data
         hispanicOrLatino        = form.hispanicOrLatino.data
         race                    =  form.race.data
-        otherLanguages          = form.otherLanguages.data
-        specialAccommodations   = form.specialAccommodations.data
+        #otherLanguages          = form.otherLanguages.data
+        #specialAccommodations   = form.specialAccommodations.data
         workAuthorization        = form.workAuthorization.data
         citizenship              = form.citizenship.data
         validID                  = form.validID.data
@@ -84,19 +86,21 @@ def page3():
         housingStatus            = form.housingStatus.data
         ageOver24                = form.ageOver24.data
 
-        cur = mysql.connection.cursor()
+        cur1 = mysql.connection.cursor()
 
         print("About to Execute!")
-        cur.execute("INSERT INTO demographic_info(gender, hispanicOrLatino, race, otherLanguages, specialAccommodations, workAuthorization, citizenship, validID, primaryTransportation, housingStatus, ageOver24)VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (gender, hispanicOrLatino, race, otherLanguages, specialAccommodations, workAuthorization, citizenship, validID, primaryTransportation, housingStatus, ageOver24))
+
+        insertString = "INSERT INTO demographic_info(gender, hispanicOrLatino, race, workAuthorization, citizenship, validID, primaryTransportation, housingStatus, ageOver24) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)", (gender, hispanicOrLatino, race, workAuthorization, citizenship, validID, primaryTransportation, housingStatus, ageOver24)
+        print(insertString)
+        cur1.execute("INSERT INTO demographic_info(gender, hispanicOrLatino, race, workAuthorization, citizenship, validID, primaryTransportation, housingStatus, ageOver24) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)", (gender, hispanicOrLatino, race, workAuthorization, citizenship, validID, primaryTransportation, housingStatus, ageOver24))
 
         print("Executed!")
         mysql.connection.commit()
 
-        cur.close()
+        cur1.close()
 
     form = Household_and_Family_Information(request.form)
     return render_template('page3.html', form=form)
-
 
 
 @app.route('/page1', methods=['GET', 'POST'])
@@ -107,7 +111,7 @@ def page1():
 @app.route('/page2', methods=['GET', 'POST'])
 def page2():
     form = Contact_Information(request.form)
-    print("Hello")
+    print("Hello2")
     if request.method == 'POST':
         print("I want to assign vars")
         firstName           = form.firstName.data
@@ -141,35 +145,7 @@ def page2():
 
         cur.close()
 
-    #if request.method == 'POST' and form.validate():
-    #    firstName           = form.firstName.data
-    #    middleName          = form.middleName.data
-    #    lastName            = form.lastName.data
-    #    referral            = form.referral.data
-    #    streetAddress       = form.streetAddress.data
-    #    city                = form.city.data
-    #    state               = form.state.data
-    #    postalCode          = form.postalCode.data
-    #    county              = form.county.data
-    #    socialSecurity      = form.socialSecurity.data
-    #    dateOfBirth         = form.dateOfBirth.data
-    #    email               = form.email.data
-    #    workPhone           = form.workPhone.data
-    #    mobilePhone         = form.mobilePhone.data
-    #    homePhone           = form.homePhone.data
-    #    preferredPhone      = form.preferredPhone.data
-    #    facebookPage        = form.facebookPage.data
-    #    twitterHandle       = form.twitterHandle.data
-    #    instagramUsername   = form.instagramUsername.data
-    #    linkedIn            = form.linkedIn.data
-
-    #    cur.execute("INSERT INTO users(firstName, middleName, lastName, referral, streetAddress, city, state, postalCode, county, socialSecurity, dateOfBirth, email, workPhone, mobilePhone, homePhone, preferredPhone, facebookPage, twitterHandle, instagramUsername, linkedIn) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (firstName, middleName, lastName, referral, streetAddress, city, state, postalCode, county, socialSecurity, dateOfBirth, email, workPhone, mobilePhone, homePhone, preferredPhone, facebookPage, twitterHandle, instagramUsername, linkedIn))
-
-    #    mysql.connection.commit()
-
-    #    cur.close()
-
-        form = Demographic_Information(request.form)
+    form = Demographic_Information(request.form)
     return render_template('page2.html', form=form)
 
 
