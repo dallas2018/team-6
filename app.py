@@ -8,6 +8,7 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 
 from Demographic_Information import Demographic_Information
 from Contact_Information import Contact_Information
+from Household_and_Family_Information import Household_and_Family_Information
 
 DEBUG = True
 app = Flask(__name__)
@@ -29,6 +30,11 @@ def index():
 
 class ReusableForm(Form):
     name = TextAreaField('Name:', validators=[validators.data_required()])
+
+@app.route('/page3', methods=['GET', 'POST'])
+def page3():
+    form = Household_and_Family_Information(request.form)
+    return render_template('page3.html', form=form)
 
 @app.route('/page2', methods=['GET', 'POST'])
 def page2():
