@@ -12,16 +12,13 @@
 </head>
 <body>
 
-<<<<<<< HEAD
-<form method="POST" action="/page3">
-=======
 <div class="container">
 
  <h2>Progress</h2>
   <div class="progress" style="width: 500px;">
       <div class="progress-bar progress-bar-striped active" role="progressbar"
-  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:50%">
-    50%
+  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+    100%
   </div>
   </div>
 </div>
@@ -31,20 +28,20 @@
 </html>
 
 </body>
-<form method="POST" action="">
->>>>>>> origin/master
+<html>
+<header><title>Congratulations</title></header>
+<body>
+    <h2> <center>Congratulations!</center> </h2>
+    <center>
+        Thank you for submitting your application! <br>
+        You will be notified about your application appointment at SER's Workforce Opportunity Center via text/email/phone. <br>
+        Information Sessions are also held at 1:30pm every Tuesday at this location <br>
+        1710 Telephone Road, Houston TX 77023 <br><br>
 
-    <h1> Household and Family Info </h1>
-    {% for f in form %}
-    <div class="form-group">
-        {{ f.label }}<br> {{ f }}
-    </div>
-    {% endfor %}
-</form>
 
-<center>
-    <a href="/page2" class="Previous">&laquo;Previous</a>
-    <a href="/page4" class="Next">Next&raquo</a>
+        <img src="http://serhouston.org/wp-content/uploads/2018/05/SERJobs-hire.jpg" alt="Hope">
+    </center>
+</body>
+</html>
 
-</center>
 {% endblock %}
