@@ -1,0 +1,23 @@
+from wtforms import Form, BooleanField, StringField, validators, SelectField
+
+class Contact_Information(Form):
+    firstName           = StringField('First Name*', [validators.Length(min=1, max=120)])
+    middleName          = StringField('Middle Name', [validators.Length(min=0, max=120)])
+    lastName            = StringField('Last Name*', [validators.Length(min=1, max=120)])
+    referral            = SelectField('How did you hear about SER Jobs for Progress?*', choices =['Please select...', 'church flyer', 'Church Presentation', 'Community Agency Flyer', 'Community Agency Staff', 'Guidance Counselor', 'HCC', "Information Session", 'Internet/ Social Media', 'Job Fair/ Hiring Event', 'Ser Client/Alumni', 'SER Staff', 'United Way Helpline', 'Workforce Solution', 'Other'])
+    streetAddress       = StringField('Street Address*', [validators.Length(min=1, max=120)])
+    city                = StringField('City*', [validators.Length(min=1, max=120)])
+    state               = SelectField('State*', choices=['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia,Hawaii', 'Idaho', 'Illinois', 'Indiana','Iowa,Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio,Oklahoma', 'Oregon,Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'])
+    postalCode          = StringField('Postal Code*', [validators.Length(min=1, max=120)])
+    county              = SelectField('County*', choices=['Please select...', 'Brazoria', 'Chambers', 'Fort Bend', 'Galveston', 'Harris', 'Liberty', 'Montgomery', 'Waller', 'Other'])
+    socialSecurity      = StringField('Social Security #*', [validators.Length(min=0, max=9)])
+    dateOfBirth         = StringField('Date of Birth*', [validators.Length(min=1, max=10)])
+    email               = StringField('Email Address', [validators.Length(min=0, max=120)])
+    workPhone           = StringField('Work Phone', [validators.Length(min=0, max=120)])
+    mobilePhone         = StringField('Mobile Phone*', [validators.Length(min=1, max=120)])
+    homePhone           = StringField('Home Phone', [validators.Length(min=0, max=120)])
+    preferredPhone      = SelectField('Preferred Phone', choices=['Please select...', 'Home', 'Work', 'Mobile'])
+    facebookPage        = StringField('Facebook Page', [validators.Length(min=0, max=125)])
+    twitterHandle       = StringField('Twitter Handle', [validators.Length(min=0, max=125)])
+    instagramUsername   = StringField('Instagram Username', [validators.Length(min=0, max=125)])
+    linkedIn            = StringField('LinkedIn Profile', [validators.Length(min=0, max=125)])
