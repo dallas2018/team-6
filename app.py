@@ -45,6 +45,7 @@ def page1():
     form = Contact_Information(request.form)
 
     return render_template('page1.html', form=form)
+
 @app.route('/Modal1')
 def Modal1():
     return render_template('Modal1.html')
