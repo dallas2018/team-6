@@ -1,0 +1,17 @@
+{% extends 'Modal1.html' %}
+
+{% block body %}
+
+<form method="POST" action="">
+
+    <h1> Demographic Information</h1>
+    {% for f in form %}
+    <div class="form-group">
+        {{ f.label }}<br> {{ f }}
+    </div>
+    {% endfor %}
+
+    <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+</form>
+
+{% endblock %}
