@@ -20,7 +20,7 @@ mysql  = MySQL()
 #config mySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Hey123#'
+app.config['MYSQL_PASSWORD'] = 'theNurseNeedsFiles18#'
 app.config['MYSQL_DB'] = 'team6'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql.init_app(app)
@@ -49,19 +49,45 @@ def page4():
 
 @app.route('/page3', methods=['GET', 'POST'])
 def page3():
+    form = Demographic_Information(request.form)
+    if request.method == 'POST':
+        gender                  = form.gender.data
+        hispanicOrLatino        = form.hispanicOrLatino.data
+        race                    =  form.race.data
+        otherLanguages          = form.otherLanguages.data
+        specialAccommodations   = form.specialAccommodations.data
+        workAuthorization        = form.workAuthorization.data
+        citizenship              = form.citizenship.data
+        validID                  = form.validID.data
+        primaryTransportation    = form.primaryTransportation.data
+        housingStatus            = form.housingStatus.data
+        ageOver24                = form.ageOver24.data
+
+        cur = mysql.connection.cursor()
+
+        print("About to Execute!")
+        cur.execute("INSERT INTO demographic_info(gender, hispanicOrLatino, race, otherLanguages, specialAccommodations, workAuthorization, citizenship, validID, primaryTransportation, housingStatus, ageOver24)VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (gender, hispanicOrLatino, race, otherLanguages, specialAccommodations, workAuthorization, citizenship, validID, primaryTransportation, housingStatus, ageOver24))
+
+        print("Executed!")
+        mysql.connection.commit()
+
+        cur.close()
+
     form = Household_and_Family_Information(request.form)
     return render_template('page3.html', form=form)
 
-@app.route('/page2', methods=['GET', 'POST'])
-def page2():
-    form = Demographic_Information(request.form)
-    return render_template('page2.html', form=form)
-    # return render_template('page2.html', form=form)
 
 @app.route('/page1', methods=['GET', 'POST'])
 def page1():
     form = Contact_Information(request.form)
-    if request.method == 'POST' and form.validate():
+    return render_template('page1.html', form=form)
+
+@app.route('/page2', methods=['GET', 'POST'])
+def page2():
+    form = Contact_Information(request.form)
+    print("Hello")
+    if request.method == 'POST':
+        print("I want to assign vars")
         firstName           = form.firstName.data
         middleName          = form.middleName.data
         lastName            = form.lastName.data
@@ -81,15 +107,21 @@ def page1():
         facebookPage        = form.facebookPage.data
         twitterHandle       = form.twitterHandle.data
         instagramUsername   = form.instagramUsername.data
-        linkedIn            = form.linkedIn.data
+        #linkedIn            = form.linkedIn.data
 
-        cur.execute("INSERT INTO users(firstName, middleName, lastName, referral, streetAddress, city, state, postalCode, county, socialSecurity, dateOfBirth, email, workPhone, mobilePhone, homePhone, preferredPhone, facebookPage, twitterHandle, instagramUsername, linkedIn) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (firstName, middleName, lastName, referral, streetAddress, city, state, postalCode, county, socialSecurity, dateOfBirth, email, workPhone, mobilePhone, homePhone, preferredPhone, facebookPage, twitterHandle, instagramUsername, linkedIn))
+        cur = mysql.connection.cursor()
 
+        print("About to Execute!")
+        cur.execute("INSERT INTO contact_Informaton(firstName, middleName, lastName, referral, streetAddress, city, state, postalCode, county, socialSecurity, dateOfBirth, email, workPhone, mobilePhone, homePhone, preferredPhone, facebookPage, twitterHandle, instagramUsername) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (firstName, middleName, lastName, referral, streetAddress, city, state, postalCode, county, socialSecurity, dateOfBirth, email, workPhone, mobilePhone, homePhone, preferredPhone, facebookPage, twitterHandle, instagramUsername))
+
+        print("Executed!")
         mysql.connection.commit()
 
         cur.close()
 
-    return render_template('page1.html', form=form)
+        form = Demographic_Information(request.form)
+    return render_template('page2.html', form=form)
+
 
 @app.route('/apply')
 def apply():
@@ -97,4 +129,4 @@ def apply():
 
 if __name__ == '__main__':
     app.run(
-    host='0.0.0.0',port=5000,debug=True)
+    host='127.0.0.1',port=8080,debug=True)

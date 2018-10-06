@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<form method="POST" action="">
+<form method="POST" action="/page5">
     <h1> Demographic Information</h1>
     {% for f in form %}
     <div class="form-group">
@@ -11,11 +11,13 @@
     {% endfor %}
 </form>
 
-<!-- <p><input type="submit" class="btn btn-primary" value="Submit"></p> -->
+<input type="submit" class="btn btn-primary" value="Next"></p>
 
+<!--
 <center>
     <a href="/page1" class="Previous">&laquo;previous</a>
     <a href="/page3" class="Next">Next&raquo</a>
 </center>
+-->
 
 {% endblock %}

@@ -21,3 +21,5 @@ class Contact_Information(Form):
     twitterHandle       = StringField('Twitter Handle', [validators.Length(min=0, max=125)])
     instagramUsername   = StringField('Instagram Username', [validators.Length(min=0, max=125)])
     linkedIn            = StringField('LinkedIn Profile', [validators.Length(min=0, max=125)])
+
+    print("Im in the contact information")
