@@ -44,6 +44,23 @@ class ReusableForm(Form):
 
 @app.route('/page5', methods=['GET', 'POST'])
 def page5():
+    smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
+    smtpObj.ehlo()
+    smtpObj.starttls()
+    passw = 'SERHouston18'
+    smtpObj.login('serhoustonautotext@gmail.com', passw)
+    smtpObj.sendmail('cristiangonzalez1998@gmail.com', 'cristiangonzalez1998@gmail.com',
+                     'Subject: Finished Application\nHello, Congratulations on completing your applications with SER Houston. We will come in contact with you in 3-5 business days. Our offices are open Tuesday at 1:30 pm for information meetings!')
+    accountSID = 'AC372eea480291ec92b30cb06e264bd80c'
+    authToken = '4db44f599dec7241b97e386fd0e69ffc'
+    client = Client(accountSID, authToken)
+    myTwilioNumber = '+19728489497'
+    myCellPhone = '+14693860594'
+    message = client.messages.create(
+        to=myCellPhone,
+        from_=myTwilioNumber,
+        body="Hello, Congratulations on completing your applications with SER Houston. We will come in contact with you in 3-5 business days. Our offices are open Tuesday at 1:30 pm for information meetings!")
+
     return render_template('page5.html')
 
 @app.route('/page4', methods=['GET', 'POST'])
