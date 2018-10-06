@@ -9,6 +9,7 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 from Demographic_Information import Demographic_Information
 from Contact_Information import Contact_Information
 from Household_and_Family_Information import Household_and_Family_Information
+from Public_Assistance_Benefits import Public_Assistance_Benefits
 
 DEBUG = True
 app = Flask(__name__)
@@ -30,6 +31,12 @@ def index():
 
 class ReusableForm(Form):
     name = TextAreaField('Name:', validators=[validators.data_required()])
+
+@app.route('/page4', methods=['GET', 'POST'])
+def page4():
+    form = Public_Assistance_Benefits(request.form)
+    return render_template('page4.html', form=form)
+
 
 @app.route('/page3', methods=['GET', 'POST'])
 def page3():
