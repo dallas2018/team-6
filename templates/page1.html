@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<form method="POST" action="">
+    <div class = "form-group">
+      {{render_field(form.firstName, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.middleName, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.lastName, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.referral, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.streetAddress, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.city, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.state, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.postalCode, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.county, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.socialSecurity, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.dateOfBirth, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.email, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.workPhone, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.mobilePhone, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.homePhone, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.preferredPhone, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.facebookPage, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.twitterHandle, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.instagramUsername, class_ = "form-control")}}
+</div>
+     <div class = "form-group">
+      {{render_field(form.linkedIn, class_ = "form-control")}}
+     </div>
+</form>
+{% endblock %}
