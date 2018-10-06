@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask import request
-#from flask_mysqldb import MySQL
-# from flask_wtf import Form
+from flask_mysqldb import MySQL
+from flask_wtf import Form
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 
 from flask import Flask, render_template, flash, request
@@ -16,10 +16,9 @@ from Prefix_Page import Prefix_Page
 DEBUG = True
 app = Flask(__name__)
 
-#mysql  = MySQL()
+mysql  = MySQL()
 
 #config mySQL
-<<<<<<< HEAD
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'theNurseNeedsFiles18#'
