@@ -1,9 +1,10 @@
-{% extends 'layout.html' %}
+{% extends 'Modal1.html' %}
 
 {% block body %}
 
 <form method="POST" action="">
 
+    <h1> Contact Information</h1>
     {% for f in form %}
     <div class="form-group">
         {{ f.label }}<br> {{ f }}
