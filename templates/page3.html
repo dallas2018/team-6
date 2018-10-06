@@ -4,7 +4,7 @@
 
 <form method="POST" action="">
 
-    <h1> Demographic Information</h1>
+    <h1> Household and Family Info </h1>
     {% for f in form %}
     <div class="form-group">
         {{ f.label }}<br> {{ f }}
@@ -14,4 +14,7 @@
     <p><input type="submit" class="btn btn-primary" value="Submit"></p>
 </form>
 
+<center>
+    <a href="/page2" class="previous">&laquo;previous</a>
+</center>
 {% endblock %}
