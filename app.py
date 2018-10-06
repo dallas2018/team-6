@@ -34,17 +34,17 @@ class ReusableForm(Form):
 def page2():
 
     form = Demographic_Information(request.form)
-
-
     return render_template('page2.html', form=form)
     # return render_template('page2.html', form=form)
 
 @app.route('/page1', methods=['GET', 'POST'])
 def page1():
-
     form = Contact_Information(request.form)
-
     return render_template('page1.html', form=form)
+
+@app.route('/apply')
+def apply():
+    return render_template('apply.html')
 
 @app.route('/Modal1')
 def Modal1():
