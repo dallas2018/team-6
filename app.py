@@ -32,11 +32,14 @@ def index():
 class ReusableForm(Form):
     name = TextAreaField('Name:', validators=[validators.data_required()])
 
+@app.route('/page5', methods=['GET', 'POST'])
+def page5():
+    return render_template('page5.html')
+
 @app.route('/page4', methods=['GET', 'POST'])
 def page4():
     form = Public_Assistance_Benefits(request.form)
     return render_template('page4.html', form=form)
-
 
 @app.route('/page3', methods=['GET', 'POST'])
 def page3():
