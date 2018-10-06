@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask import request
+from flask_mysqldb import MySQL
 # from flask_wtf import Form
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 
@@ -13,8 +14,16 @@ from Public_Assistance_Benefits import Public_Assistance_Benefits
 
 DEBUG = True
 app = Flask(__name__)
-app.config.from_object(__name__)
-app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
+
+mysql  = MySQL()
+
+#config mySQL
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'Hey123#'
+app.config['MYSQL_DB'] = 'team6'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+mysql.init_app(app)
 
 #class UploadForm(Form):
 #    file = FileField()
@@ -45,7 +54,6 @@ def page3():
 
 @app.route('/page2', methods=['GET', 'POST'])
 def page2():
-
     form = Demographic_Information(request.form)
     return render_template('page2.html', form=form)
     # return render_template('page2.html', form=form)
@@ -53,6 +61,34 @@ def page2():
 @app.route('/page1', methods=['GET', 'POST'])
 def page1():
     form = Contact_Information(request.form)
+    if request.method == 'POST' and form.validate():
+        firstName           = form.firstName.data
+        middleName          = form.middleName.data
+        lastName            = form.lastName.data
+        referral            = form.referral.data
+        streetAddress       = form.streetAddress.data
+        city                = form.city.data
+        state               = form.state.data
+        postalCode          = form.postalCode.data
+        county              = form.county.data
+        socialSecurity      = form.socialSecurity.data
+        dateOfBirth         = form.dateOfBirth.data
+        email               = form.email.data
+        workPhone           = form.workPhone.data
+        mobilePhone         = form.mobilePhone.data
+        homePhone           = form.homePhone.data
+        preferredPhone      = form.preferredPhone.data
+        facebookPage        = form.facebookPage.data
+        twitterHandle       = form.twitterHandle.data
+        instagramUsername   = form.instagramUsername.data
+        linkedIn            = form.linkedIn.data
+
+        cur.execute("INSERT INTO users(firstName, middleName, lastName, referral, streetAddress, city, state, postalCode, county, socialSecurity, dateOfBirth, email, workPhone, mobilePhone, homePhone, preferredPhone, facebookPage, twitterHandle, instagramUsername, linkedIn) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (firstName, middleName, lastName, referral, streetAddress, city, state, postalCode, county, socialSecurity, dateOfBirth, email, workPhone, mobilePhone, homePhone, preferredPhone, facebookPage, twitterHandle, instagramUsername, linkedIn))
+
+        mysql.connection.commit()
+
+        cur.close()
+
     return render_template('page1.html', form=form)
 
 @app.route('/apply')
